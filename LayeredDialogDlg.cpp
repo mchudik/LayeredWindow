@@ -100,6 +100,11 @@ BOOL CLayeredDialogDlg::OnInitDialog()
 
 	// TODO: Add extra initialization here
 
+	// Set WS_EX_LAYERED on this window 
+	SetWindowLong(GetSafeHwnd(), GWL_EXSTYLE, GetWindowLong(GetSafeHwnd(), GWL_EXSTYLE) | WS_EX_LAYERED);
+	// Make this window 50% alpha
+	SetLayeredWindowAttributes(0, (255 * 50) / 100, LWA_ALPHA);
+
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
