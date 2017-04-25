@@ -212,6 +212,7 @@
     <None Include="res\LayeredDialog.rc2" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\ECHO.bmp" />
     <Image Include="res\LayeredDialog.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

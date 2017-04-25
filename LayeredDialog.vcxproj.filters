@@ -59,5 +59,8 @@
     <Image Include="res\LayeredDialog.ico">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\ECHO.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
