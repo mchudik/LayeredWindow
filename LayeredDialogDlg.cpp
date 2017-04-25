@@ -64,6 +64,8 @@ BEGIN_MESSAGE_MAP(CLayeredDialogDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDC_TRANSPARENT, &CLayeredDialogDlg::OnBnClickedTransparent)
+	ON_BN_CLICKED(IDC_OPAQUE, &CLayeredDialogDlg::OnBnClickedOpaque)
 END_MESSAGE_MAP()
 
 
@@ -157,3 +159,21 @@ HCURSOR CLayeredDialogDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void CLayeredDialogDlg::OnBnClickedTransparent()
+{
+	// Set WS_EX_LAYERED on this window 
+	SetWindowLong(GetSafeHwnd(), GWL_EXSTYLE, GetWindowLong(GetSafeHwnd(), GWL_EXSTYLE) | WS_EX_LAYERED);
+	// Make this window 50% alpha
+	SetLayeredWindowAttributes(0, (255 * 50) / 100, LWA_ALPHA);
+}
+
+
+void CLayeredDialogDlg::OnBnClickedOpaque()
+{
+	// Remove WS_EX_LAYERED from this window styles
+	SetWindowLong(GetSafeHwnd(), GWL_EXSTYLE, GetWindowLong(GetSafeHwnd(), GWL_EXSTYLE) & ~WS_EX_LAYERED);
+	// Ask the window and its children to repaint
+	RedrawWindow(NULL, NULL, RDW_ERASE | RDW_INVALIDATE | RDW_FRAME | RDW_ALLCHILDREN);
+}
